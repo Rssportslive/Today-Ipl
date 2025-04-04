@@ -1,0 +1,124 @@
+<!DOCTYPE html>  <html lang="bn">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>RS LIVE SPORTS | IPL PLAYER</title>  
+    <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            text-align: center;  
+            margin: 0;  
+            padding: 0;  
+            background-color: #ffffff;  
+        }  
+        .header {  
+            background: #fff;  
+            padding: 15px;  
+            display: flex;  
+            align-items: center;  
+            justify-content: space-between;  
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
+        }  
+        .header img {  
+            height: 30px;  
+        }  
+        .menu-icon {  
+            width: 30px;  
+            height: 30px;  
+            background: #e9ecef;  
+            border-radius: 5px;  
+            display: flex;  
+            align-items: center;  
+            justify-content: center;  
+            font-size: 20px;  
+            cursor: pointer;  
+        }  
+        .video-container {  
+            width: 100%;  
+            max-width: 700px;  
+            margin: 10px auto;  
+        }  
+        #player {  
+            width: 100%;  
+            height: 250px;  
+        }  
+        .server-buttons {  
+            margin-top: 10px;  
+        }  
+        .server-buttons button {  
+            padding: 10px 20px;  
+            margin: 5px;  
+            font-size: 16px;  
+            font-weight: bold;  
+            border: 2px solid blue;  
+            background: white;  
+            cursor: pointer;  
+        }  
+        .server-buttons button:hover {  
+            background: blue;  
+            color: white;  
+        }  
+    </style>  
+</head>  
+<body>  
+<header class="header">  
+    <img src="https://1000logos.net/wp-content/uploads/2022/08/IPL-sponsorship-Logo-2022.png" alt="Champions Trophy">  
+    <div class="menu-icon">☰</div>  
+</header>  <div class="video-container">  
+    <div id="player"></div>  
+</div>  <div class="server-buttons">  
+    <button onclick="changeServer(1)">SERVER 1</button>  
+    <button onclick="changeServer(2)">SERVER 2</button>  
+    <button onclick="changeServer(3)">SERVER 3</button>  
+</div>  <script>  
+    var servers = {  
+        1: "https://live.tsports.com/mobile_hls/tsports_live_2/playlist.m3u8",  
+        2: "http://103.122.74.6:8888/hls/tsports.m3u8",  
+        3: "https://abkvfuwaaaaaaaamlk56gfiik2ug5.otte.live.cf.ww.aiv-cdn.net/gru-nitro/live/clients/dash-sd/enc/vodez4h7i9/out/v1/e929aee089864ce98e4c335d19f41e16/cenc-sd.mpd"  
+    };  
+
+    var player = jwplayer("player").setup({  
+        file: servers[1],   
+        width: "100%",  
+        aspectratio: "16:9",  
+        autostart: true,  
+        controls: true,  
+        type: detectType(servers[1])  
+    });  
+
+    function detectType(url) {  
+        if (url.includes(".m3u8")) return "hls";  
+        if (url.includes(".mpd")) return "dash";  
+        if (url.includes(".mp4")) return "mp4";  
+        if (url.includes(".ts")) return "mp4";  
+        return "video";  
+    }  
+
+    function changeServer(serverNumber) {  
+        if (!servers[serverNumber]) return;  
+
+        var newSource = servers[serverNumber];  
+        jwplayer("player").remove();  
+
+        player = jwplayer("player").setup({  
+            file: newSource,  
+            width: "100%",  
+            aspectratio: "16:9",  
+            autostart: true,  
+            controls: true,  
+            type: detectType(newSource)  
+        });  
+
+        player.play();  
+    }  
+</script>  <script type="text/javascript">  
+    atOptions = {  
+        'key': '5ea59990ea1cb74d2d7de0c9fd5b445d',  
+        'format': 'iframe',  
+        'height': 50,  
+        'width': 320,  
+        'params': {}  
+    };  
+</script>  <script type="text/javascript" src="//www.highperformanceformat.com/5ea59990ea1cb74d2d7de0c9fd5b445d/invoke.js"></script>  </body>  
+</html>
